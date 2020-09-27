@@ -105,6 +105,7 @@ Professor Paolo Rech
 ## Avaliations
 
 First part of thesis' [TG1] Grade:
+
 Second part of thesis' [TG2] Grade:
 
 Final Grade:
@@ -122,3 +123,17 @@ Final Grade:
 [https://dl.acm.org/doi/abs/10.1145/103162.103163](https://) [Float precision paper]
 
 [http://rodinia.cs.virginia.edu/doku.php](https://) [Rodinia]
+
+**[CUDA basics]**
+
+http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf
+
+https://devblogs.nvidia.com/even-easier-introduction-cuda/
+
+https://devblogs.nvidia.com/how-implement-performance-metrics-cuda-cc/
+
+https://devblogs.nvidia.com/how-optimize-data-transfers-cuda-cc/
+
+https://devblogs.nvidia.com/how-access-global-memory-efficiently-cuda-c-kernels/
+
+https://devblogs.nvidia.com/using-shared-memory-cuda-cc/
