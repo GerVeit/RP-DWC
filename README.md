@@ -62,9 +62,9 @@ Professor Paolo Rech
 
 29/09 - First work meeting
 
-02/09 - CUDA Startup
+02/10 - CUDA Startup
 
-03/09 - Reading of first part of FP paper 
+03/10 - Reading of first part of FP paper 
 
 ---
 
