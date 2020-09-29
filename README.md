@@ -62,9 +62,11 @@ Professor Paolo Rech
 
 29/09 - First work meeting
 
+02/09 - CUDA Startup
+
+03/09 - Reading of first part of FP paper 
+
 ---
-
-
 
 ### Week 2, 04/10/2020 - 10/10/2020
 
@@ -120,7 +122,7 @@ Final Grade:
 
 [https://forums.developer.nvidia.com/t/float-vs-double-precision-on-titan-v/107308/2](https://) [Titan-V float vs double]
 
-[https://dl.acm.org/doi/abs/10.1145/103162.103163](https://) [Float precision paper]
+[https://www.itu.dk/~sestoft/bachelor/IEEE754_article.pdf](https://) [Float precision paper]
 
 [http://rodinia.cs.virginia.edu/doku.php](https://) [Rodinia]
 
