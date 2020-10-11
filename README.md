@@ -10,8 +10,6 @@ Professor Paolo Rech
 
 ---
 
-
-
 ## Flow Definitions
 
 #Commits
@@ -23,8 +21,6 @@ Professor Paolo Rech
 #Issues
 
 ---
-
-
 
 ## Informations
 
@@ -42,15 +38,11 @@ Professor Paolo Rech
 
 ---
 
-
-
 ## Quick Guide
 
 *Setup in progress*
 
 ---
-
-
 
 ## Calendar
 
@@ -64,7 +56,7 @@ Professor Paolo Rech
 
 02/10 - CUDA Startup
 
-03/10 - Reading of first part of FP paper 
+03/10 - Reading of first part of FP paper
 
 ---
 
@@ -102,8 +94,6 @@ Professor Paolo Rech
 
 ---
 
-
-
 ## Avaliations
 
 First part of thesis' [TG1] Grade:
@@ -113,8 +103,6 @@ Second part of thesis' [TG2] Grade:
 Final Grade:
 
 ---
-
-
 
 ## Useful Links
 
