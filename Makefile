@@ -1,7 +1,7 @@
 all: intro
 
-intro: intro.cpp
-	g++ -o intro intro.cpp
+intro: intro.cu
+	nvcc -o intro intro.cu
 
 clean:
 	rm -rf *.o intro
