@@ -44,47 +44,8 @@ Professor Paolo Rech
 
 ---
 
-## Calendar
 
-### Week 1,  27/09/2020 - 03/10/2020
-
-27/09 - Setup
-
-28/09 - CUDA overview
-
-29/09 - First work meeting
-
-02/10 - CUDA Startup
-
-03/10 - Reading of first part of FP paper
-
----
-
-### Week 2, 04/10/2020 - 10/10/2020
-
----
-
-### Week 3, 11/10/2020 - 17/10/2020
-
----
-
-### Week 4, 18/10/2020 - 24/10/2020
-
----
-
-### Week 5, 25/10/2020 - 31/10/2020
-
----
-
-### Week 6, 01/11/2020 - 07/11/2020
-
----
-
-### Week 7, 08/11/2020 - 14/11/2020
-
----
-
-### [Deadline] Week 8, 15/11/2020 - 20/11/2020
+### [Deadline]
 
 20/11 - First work deliver
 
@@ -113,6 +74,8 @@ Final Grade:
 [https://www.itu.dk/~sestoft/bachelor/IEEE754_article.pdf](https://) [Float precision paper]
 
 [http://rodinia.cs.virginia.edu/doku.php](https://) [Rodinia]
+
+[https://math.stackexchange.com/questions/1920525/why-is-catastrophic-cancellation-called-so](https://) [Catastrophic Cancellation]
 
 **[CUDA basics]**
 
