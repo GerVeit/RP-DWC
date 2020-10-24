@@ -77,6 +77,8 @@ Final Grade:
 
 [https://math.stackexchange.com/questions/1920525/why-is-catastrophic-cancellation-called-so](https://) [Catastrophic Cancellation]
 
+[http://www.cs.virginia.edu/~skadron/Papers/hotspot_tvlsi06.pdf](https://) [HotSpot Paper]
+
 **[CUDA basics]**
 
 http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf
