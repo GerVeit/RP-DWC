@@ -21,11 +21,11 @@ int main(void)
 
     // initialize x and y arrays on the host
     for (int i = 0; i < N; i++) {
-        x[i] = 0.01f * (float)i;
-        y[i] = 1.01f * (float)(N-i);
+        x[i] = 1.01f * (float)i;
+        y[i] = 1.99f * (float)(N-i);
 
-        w[i] = 0.01 * (double)i;
-        z[i] = 1.01 * (double)(N-i);
+        w[i] = 1.01 * (double)i;
+        z[i] = 1.99 * (double)(N-i);
     }
 
     // Run kernel on 1M elements on the CPU
