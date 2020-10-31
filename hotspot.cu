@@ -47,7 +47,7 @@ fatal(char *s)
 
 }
 
-void writeoutput(float *vect, int grid_rows, int grid_cols, char *file){
+void writeoutput(double *vect, int grid_rows, int grid_cols, char *file){
 
 	int i,j, index=0;
 	FILE *fp;
@@ -70,7 +70,7 @@ void writeoutput(float *vect, int grid_rows, int grid_cols, char *file){
 }
 
 
-void readinput(float *vect, int grid_rows, int grid_cols, char *file){
+void readinput(double *vect, int grid_rows, int grid_cols, char *file){
 
   	int i,j;
 	FILE *fp;
@@ -88,7 +88,7 @@ void readinput(float *vect, int grid_rows, int grid_cols, char *file){
 		if (feof(fp))
 			fatal("not enough lines in file");
 		//if ((sscanf(str, "%d%f", &index, &val) != 2) || (index != ((i-1)*(grid_cols-2)+j-1)))
-		if ((sscanf(str, "%f", &val) != 1))
+		if ((sscanf(str, "%g", &val) != 1))
 			fatal("invalid file format");
 		vect[i*grid_cols+j] = val;
 	}
@@ -102,27 +102,27 @@ void readinput(float *vect, int grid_rows, int grid_cols, char *file){
 #define MIN(a, b) ((a)<=(b) ? (a) : (b))
 
 __global__ void calculate_temp(int iteration,  //number of iteration
-                               float *power,   //power input
-                               float *temp_src,    //temperature input/output
-                               float *temp_dst,    //temperature input/output
-                               int grid_cols,  //Col of grid
-                               int grid_rows,  //Row of grid
-							   int border_cols,  // border offset 
-							   int border_rows,  // border offset
-                               float Cap,      //Capacitance
-                               float Rx, 
-                               float Ry, 
-                               float Rz, 
-                               float step, 
-                               float time_elapsed){
+                                double *power,   //power input
+                                double *temp_src,    //temperature input/output
+                                double *temp_dst,    //temperature input/output
+                                int grid_cols,  //Col of grid
+                                int grid_rows,  //Row of grid
+                                int border_cols,  // border offset 
+                                int border_rows,  // border offset
+                                double Cap,      //Capacitance
+                                double Rx, 
+                                double Ry, 
+                                double Rz, 
+                                double step, 
+                                double time_elapsed){
 	
-        __shared__ float temp_on_cuda[BLOCK_SIZE][BLOCK_SIZE];
-        __shared__ float power_on_cuda[BLOCK_SIZE][BLOCK_SIZE];
-        __shared__ float temp_t[BLOCK_SIZE][BLOCK_SIZE]; // saving temporary temperature result
+        __shared__ double temp_on_cuda[BLOCK_SIZE][BLOCK_SIZE];
+        __shared__ double power_on_cuda[BLOCK_SIZE][BLOCK_SIZE];
+        __shared__ double temp_t[BLOCK_SIZE][BLOCK_SIZE]; // saving temporary temperature result
 
-	float amb_temp = 80.0;
-        float step_div_Cap;
-        float Rx_1,Ry_1,Rz_1;
+	double amb_temp = 80.0;
+        double step_div_Cap;
+        double Rx_1,Ry_1,Rz_1;
         
 	int bx = blockIdx.x;
         int by = blockIdx.y;
@@ -218,24 +218,24 @@ __global__ void calculate_temp(int iteration,  //number of iteration
    compute N time steps
 */
 
-int compute_tran_temp(float *MatrixPower,float *MatrixTemp[2], int col, int row, \
+int compute_tran_temp(double *MatrixPower,double *MatrixTemp[2], int col, int row, \
 		int total_iterations, int num_iterations, int blockCols, int blockRows, int borderCols, int borderRows) 
 {
         dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
         dim3 dimGrid(blockCols, blockRows);  
 	
-	float grid_height = chip_height / row;
-	float grid_width = chip_width / col;
+	double grid_height = chip_height / row;
+	double grid_width = chip_width / col;
 
-	float Cap = FACTOR_CHIP * SPEC_HEAT_SI * t_chip * grid_width * grid_height;
-	float Rx = grid_width / (2.0 * K_SI * t_chip * grid_height);
-	float Ry = grid_height / (2.0 * K_SI * t_chip * grid_width);
-	float Rz = t_chip / (K_SI * grid_height * grid_width);
+	double Cap = FACTOR_CHIP * SPEC_HEAT_SI * t_chip * grid_width * grid_height;
+	double Rx = grid_width / (2.0 * K_SI * t_chip * grid_height);
+	double Ry = grid_height / (2.0 * K_SI * t_chip * grid_width);
+	double Rz = t_chip / (K_SI * grid_height * grid_width);
 
-	float max_slope = MAX_PD / (FACTOR_CHIP * t_chip * SPEC_HEAT_SI);
-	float step = PRECISION / max_slope;
-	float t;
-        float time_elapsed;
+	double max_slope = MAX_PD / (FACTOR_CHIP * t_chip * SPEC_HEAT_SI);
+	double step = PRECISION / max_slope;
+	double t;
+        double time_elapsed;
 	time_elapsed=0.001;
 
         int src = 1, dst = 0;
@@ -291,7 +291,7 @@ void run(int argc, char** argv)
 {
     int size;
     int grid_rows,grid_cols;
-    float *FilesavingTemp,*FilesavingPower,*MatrixOut; 
+    double *FilesavingTemp,*FilesavingPower,*MatrixOut; 
     char *tfile, *pfile, *ofile;
     
     int total_iterations = 60;
@@ -320,9 +320,9 @@ void run(int argc, char** argv)
     int blockCols = grid_cols/smallBlockCol+((grid_cols%smallBlockCol==0)?0:1);
     int blockRows = grid_rows/smallBlockRow+((grid_rows%smallBlockRow==0)?0:1);
 
-    FilesavingTemp = (float *) malloc(size*sizeof(float));
-    FilesavingPower = (float *) malloc(size*sizeof(float));
-    MatrixOut = (float *) calloc (size, sizeof(float));
+    FilesavingTemp = (double *) malloc(size*sizeof(double));
+    FilesavingPower = (double *) malloc(size*sizeof(double));
+    MatrixOut = (double *) calloc (size, sizeof(double));
 
     if( !FilesavingPower || !FilesavingTemp || !MatrixOut)
         fatal("unable to allocate memory");
@@ -333,18 +333,18 @@ void run(int argc, char** argv)
     readinput(FilesavingTemp, grid_rows, grid_cols, tfile);
     readinput(FilesavingPower, grid_rows, grid_cols, pfile);
 
-    float *MatrixTemp[2], *MatrixPower;
-    cudaMalloc((void**)&MatrixTemp[0], sizeof(float)*size);
-    cudaMalloc((void**)&MatrixTemp[1], sizeof(float)*size);
-    cudaMemcpy(MatrixTemp[0], FilesavingTemp, sizeof(float)*size, cudaMemcpyHostToDevice);
+    double *MatrixTemp[2], *MatrixPower;
+    cudaMalloc((void**)&MatrixTemp[0], sizeof(double)*size);
+    cudaMalloc((void**)&MatrixTemp[1], sizeof(double)*size);
+    cudaMemcpy(MatrixTemp[0], FilesavingTemp, sizeof(double)*size, cudaMemcpyHostToDevice);
 
-    cudaMalloc((void**)&MatrixPower, sizeof(float)*size);
-    cudaMemcpy(MatrixPower, FilesavingPower, sizeof(float)*size, cudaMemcpyHostToDevice);
+    cudaMalloc((void**)&MatrixPower, sizeof(double)*size);
+    cudaMemcpy(MatrixPower, FilesavingPower, sizeof(double)*size, cudaMemcpyHostToDevice);
     printf("Start computing the transient temperature\n");
     int ret = compute_tran_temp(MatrixPower,MatrixTemp,grid_cols,grid_rows, \
 	 total_iterations,pyramid_height, blockCols, blockRows, borderCols, borderRows);
 	printf("Ending simulation\n");
-    cudaMemcpy(MatrixOut, MatrixTemp[ret], sizeof(float)*size, cudaMemcpyDeviceToHost);
+    cudaMemcpy(MatrixOut, MatrixTemp[ret], sizeof(double)*size, cudaMemcpyDeviceToHost);
 
     writeoutput(MatrixOut,grid_rows, grid_cols, ofile);
 
