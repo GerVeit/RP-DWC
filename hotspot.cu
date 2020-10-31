@@ -61,7 +61,7 @@ void writeoutput(double *vect, int grid_rows, int grid_cols, char *file){
 	 for (j=0; j < grid_cols; j++)
 	 {
 
-		 sprintf(str, "%d\t%g\n", index, vect[i*grid_cols+j]);
+		 sprintf(str, "%d\t%lf\n", index, vect[i*grid_cols+j]);
 		 fputs(str,fp);
 		 index++;
 	 }
@@ -75,7 +75,7 @@ void readinput(double *vect, int grid_rows, int grid_cols, char *file){
   	int i,j;
 	FILE *fp;
 	char str[STR_SIZE];
-	float val;
+	double val;
 
 	if( (fp  = fopen(file, "r" )) ==0 )
             printf( "The file was not opened\n" );
@@ -88,7 +88,7 @@ void readinput(double *vect, int grid_rows, int grid_cols, char *file){
 		if (feof(fp))
 			fatal("not enough lines in file");
 		//if ((sscanf(str, "%d%f", &index, &val) != 2) || (index != ((i-1)*(grid_cols-2)+j-1)))
-		if ((sscanf(str, "%g", &val) != 1))
+		if ((sscanf(str, "%lf", &val) != 1))
 			fatal("invalid file format");
 		vect[i*grid_cols+j] = val;
 	}
