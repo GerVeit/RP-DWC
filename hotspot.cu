@@ -53,16 +53,16 @@ void writeoutput(double *vect, int grid_rows, int grid_cols, char *file){
 	FILE *fp;
 	char str[STR_SIZE];
 
-	if( (fp = fopen(file, "w" )) == 0 )
+	if( (fp = fopen(file, "wb" )) == 0 )
           printf( "The file was not opened\n" );
 
 
 	for (i=0; i < grid_rows; i++) 
 	 for (j=0; j < grid_cols; j++)
 	 {
-
-		 sprintf(str, "%d\t%lf\n", index, vect[i*grid_cols+j]);
-		 fputs(str,fp);
+                fwrite(&vect[i*grid_cols+j], sizeof(double), 1, fp);
+		 //sprintf(str, "%d\t%lf\n", index, vect[i*grid_cols+j]);
+		 //fputs(str,fp);
 		 index++;
 	 }
 		
@@ -188,14 +188,16 @@ __global__ void calculate_temp(int iteration,  //number of iteration
         for (int i=0; i<iteration ; i++){ 
             computed = false;
             if( IN_RANGE(tx, i+1, BLOCK_SIZE-i-2) &&  \
-                  IN_RANGE(ty, i+1, BLOCK_SIZE-i-2) &&  \
-                  IN_RANGE(tx, validXmin, validXmax) && \
-                  IN_RANGE(ty, validYmin, validYmax) ) {
-                  computed = true;
-                  temp_t[ty][tx] =   temp_on_cuda[ty][tx] + step_div_Cap * (power_on_cuda[ty][tx] + 
-	       	         (temp_on_cuda[S][tx] + temp_on_cuda[N][tx] - 2.0*temp_on_cuda[ty][tx]) * Ry_1 + 
-		             (temp_on_cuda[ty][E] + temp_on_cuda[ty][W] - 2.0*temp_on_cuda[ty][tx]) * Rx_1 + 
-		             (amb_temp - temp_on_cuda[ty][tx]) * Rz_1);
+                IN_RANGE(ty, i+1, BLOCK_SIZE-i-2) &&  \
+                IN_RANGE(tx, validXmin, validXmax) && \
+                IN_RANGE(ty, validYmin, validYmax) ) {
+                computed = true;
+                temp_t[ty][tx] =        temp_on_cuda[ty][tx] + step_div_Cap * (power_on_cuda[ty][tx] + 
+	       	                        (temp_on_cuda[S][tx] + temp_on_cuda[N][tx] - 2.0*temp_on_cuda[ty][tx]) * Ry_1 + 
+		                        (temp_on_cuda[ty][E] + temp_on_cuda[ty][W] - 2.0*temp_on_cuda[ty][tx]) * Rx_1 + 
+                                        (amb_temp - temp_on_cuda[ty][tx]) * Rz_1);
+                temp_dst[index]= temp_t[ty][tx];
+                
 	
             }
             __syncthreads();
@@ -209,9 +211,9 @@ __global__ void calculate_temp(int iteration,  //number of iteration
       // update the global memory
       // after the last iteration, only threads coordinated within the 
       // small block perform the calculation and switch on ``computed''
-      if (computed){
-          temp_dst[index]= temp_t[ty][tx];		
-      }
+      //  if (computed){
+      //          temp_dst[index]= temp_t[ty][tx];		
+      //  }
 }
 
 /*
@@ -335,7 +337,7 @@ void run(int argc, char** argv)
 
     double *MatrixTemp[2], *MatrixPower;
     cudaMalloc((void**)&MatrixTemp[0], sizeof(double)*size);
-    cudaMalloc((void**)&MatrixTemp[1], sizeof(double)*size);
+    cudaMalloc((void**)&MatrixTemp[1], sizeof(double)*size*2);
     cudaMemcpy(MatrixTemp[0], FilesavingTemp, sizeof(double)*size, cudaMemcpyHostToDevice);
 
     cudaMalloc((void**)&MatrixPower, sizeof(double)*size);

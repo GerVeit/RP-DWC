@@ -1,1 +1,1 @@
-./hotspot 512 2 2 ./temp_512 ./power_512 output.out
+./hotspot 512 1 1 ./temp_512 ./power_512 output.bin
