@@ -79,6 +79,9 @@ Final Grade:
 
 [http://www.cs.virginia.edu/~skadron/Papers/hotspot_tvlsi06.pdf](https://) [HotSpot Paper]
 
+[http://people.ee.duke.edu/~sorin/papers/prdc13-fpu.pdf](https://) [Applying Reduced Precision Arithmetic to
+Detect Errors in Floating Point Multiplication Paper]
+
 **[CUDA basics]**
 
 http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf
