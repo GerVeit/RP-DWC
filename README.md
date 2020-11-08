@@ -82,6 +82,8 @@ Final Grade:
 [http://people.ee.duke.edu/~sorin/papers/prdc13-fpu.pdf](https://) [Applying Reduced Precision Arithmetic to
 Detect Errors in Floating Point Multiplication Paper]
 
+https://repositories.lib.utexas.edu/bitstream/handle/2152/33331/SULLIVAN-DISSERTATION-2015.pdf?sequence=1
+
 **[CUDA basics]**
 
 http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf
