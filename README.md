@@ -67,22 +67,24 @@ Final Grade:
 
 ## Useful Links
 
-[https://sites.google.com/site/comgradecptg/calendarios-tgs/informacoes-tg1](https://) [Work Definitions]
+https://sites.google.com/site/comgradecptg/calendarios-tgs/informacoes-tg1 [Work Definitions]
 
-[https://forums.developer.nvidia.com/t/float-vs-double-precision-on-titan-v/107308/2](https://) [Titan-V float vs double]
+https://forums.developer.nvidia.com/t/float-vs-double-precision-on-titan-v/107308/2 [Titan-V float vs double]
 
-[https://www.itu.dk/~sestoft/bachelor/IEEE754_article.pdf](https://) [Float precision paper]
+https://www.itu.dk/~sestoft/bachelor/IEEE754_article.pdf [Float precision paper]
 
-[http://rodinia.cs.virginia.edu/doku.php](https://) [Rodinia]
+http://rodinia.cs.virginia.edu/doku.php [Rodinia]
 
-[https://math.stackexchange.com/questions/1920525/why-is-catastrophic-cancellation-called-so](https://) [Catastrophic Cancellation]
+https://math.stackexchange.com/questions/1920525/why-is-catastrophic-cancellation-called-so [Catastrophic Cancellation]
 
-[http://www.cs.virginia.edu/~skadron/Papers/hotspot_tvlsi06.pdf](https://) [HotSpot Paper]
+http://www.cs.virginia.edu/~skadron/Papers/hotspot_tvlsi06.pdf [HotSpot Paper]
 
-[http://people.ee.duke.edu/~sorin/papers/prdc13-fpu.pdf](https://) [Applying Reduced Precision Arithmetic to
+http://people.ee.duke.edu/~sorin/papers/prdc13-fpu.pdf [Applying Reduced Precision Arithmetic to
 Detect Errors in Floating Point Multiplication Paper]
 
 https://repositories.lib.utexas.edu/bitstream/handle/2152/33331/SULLIVAN-DISSERTATION-2015.pdf?sequence=1 [Michael Sullivan Thesis - Low Cost Duplication for Separable Error Detection]
+
+http://axbench.org/papers/dt.darksilicon16-camera.pdf [AxBench]
 
 **[CUDA basics]**
 
