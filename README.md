@@ -86,6 +86,8 @@ https://repositories.lib.utexas.edu/bitstream/handle/2152/33331/SULLIVAN-DISSERT
 
 http://axbench.org/papers/dt.darksilicon16-camera.pdf [AxBench]
 
+http://web.cecs.pdx.edu/~cgshirl/Documents/2005%20Baumann%20Soft%20Error.pdf [Background]
+
 **[CUDA basics]**
 
 http://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf
