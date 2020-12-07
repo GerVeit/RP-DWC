@@ -345,18 +345,21 @@ __global__ void calculate_temp(
                 ) * Rz_1_reduced 
 			);
 			
-			if( ((float)temp_t[ty][tx] / temp_t_reduced[ty][tx]) >= 1.002247f){
+			//if( ((float)temp_t[ty][tx] / temp_t_reduced[ty][tx]) >= 1.002247f){
+			if(index == 1756807){
 				printf("relative: %f / %f = %f\n", (float)temp_t[ty][tx], temp_t_reduced[ty][tx], (float)temp_t[ty][tx] / temp_t_reduced[ty][tx]);
 				printf("absolute: %f - %f = %f\n", (float)temp_t[ty][tx], temp_t_reduced[ty][tx], (float)temp_t[ty][tx] - temp_t_reduced[ty][tx]);
-				printf("inputs float: Ry = %f, Rx = %f, Rz = %f, Cap = %f\n", Ry_1_reduced, Rx_1_reduced, Rz_1_reduced, step_div_Cap_reduced);
+				printf("before casting: %lf\n", temp_t[ty][tx]);
+				//printf("index: %d\n",index);
+				//printf("inputs float: Ry = %f, Rx = %f, Rz = %f, Cap = %f\n", Ry_1_reduced, Rx_1_reduced, Rz_1_reduced, step_div_Cap_reduced);
 				printf("temp float: ty x tx = %f, S x tx = %f, N x tx = %f, ty x E = %f, ty x W = %f\n", 
 				temp_on_cuda_reduced[ty][tx], temp_on_cuda_reduced[S][tx], temp_on_cuda_reduced[N][tx], temp_on_cuda_reduced[ty][E], temp_on_cuda_reduced[ty][W]);
-				printf("power float: %f\n\n", power_on_cuda_reduced[ty][tx]);
+				//printf("power float: %f\n", power_on_cuda_reduced[ty][tx]);
 
-				printf("inputs double: Ry = %lf, Rx = %lf, Rz = %lf, Cap = %lf\n", Ry_1, Rx_1, Rz_1, step_div_Cap);
-				printf("temp double: ty x tx = %lf, S x tx = %lf, N x tx = %lf, ty x E = %lf, ty x W = %lf\n", 
+				//printf("inputs double: Ry = %lf, Rx = %lf, Rz = %lf, Cap = %lf\n", Ry_1, Rx_1, Rz_1, step_div_Cap);
+				printf("temp double: ty x tx = %lf, S x tx = %lf, N x tx = %lf, ty x E = %lf, ty x W = %lf\n\n", 
 				temp_on_cuda[ty][tx], temp_on_cuda[S][tx], temp_on_cuda[N][tx], temp_on_cuda[ty][E], temp_on_cuda[ty][W]);
-				printf("power float: %lf\n", power_on_cuda[ty][tx]);
+				//printf("power double: %lf\n\n", power_on_cuda[ty][tx]);
 				//relative = ((float)temp_t[ty][tx] / temp_t_reduced[ty][tx]);
 			}
 		}
